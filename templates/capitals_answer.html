@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Answers
+{% endblock %}
+
+{% block main %}
+
+    <h2>Your Results</h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Country</th>
+                <th>Your Answer</th>
+                <th>Correct Capital</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for r in results %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ r.country }}</td>
+                <td>{{ r.user }}</td>
+                <td>{{ r.correct }}</td>
+                <td>
+                    {% if r.is_correct %}
+                        ✅ Correct
+                    {% else %}
+                        ❌ Incorrect
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

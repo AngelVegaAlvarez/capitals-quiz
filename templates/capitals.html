@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Capitals Quiz
+{% endblock %}
+
+{% block main %}
+<div class="container mt-4">
+    <h2 class="mb-3">🌍 Capitals Quiz</h2>
+    <p class="lead">Enter the capital city for each country below. You’ll earn points for each correct answer!</p>
+
+    <form action="/capitals" method="post">
+        <div class="row">
+            {% for q in questions %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <label for="answer_{{ loop.index0 }}" class="form-label">
+                                <strong>{{ loop.index }}.</strong> What is the capital of <strong>{{ q.country }}</strong>?
+                            </label>
+                            <input autocomplete="off" type="text" name="answer_{{ loop.index0 }}" id="answer_{{ loop.index0 }}" class="form-control" placeholder="Type your answer here">
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Submit Answers</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
